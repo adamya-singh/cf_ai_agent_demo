@@ -553,3 +553,6 @@ implement the proposed changes. Minimize complexity while retaining all function
 
 Prompt I used to add some UI stuff(adjusted it for each button):
 "Add a button on the right side of the screen that says "What math courses are offered?" and when clicked, types this into the chat box and enters it."
+
+Prompt for the README.md:
+"I just created a blank README.md. Fill it out with a quick description of the agent I made. I used a starter template so the only actual content you need to describe is that I connected the agent to my supabase PostgreSQL database and added a tool to query the database with free text search."
