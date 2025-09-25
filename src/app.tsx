@@ -75,6 +75,7 @@ export default function Chat() {
   });
 
   const [agentInput, setAgentInput] = useState("");
+  const presetQuestion = "What math courses are offered?";
   const handleAgentInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -138,6 +139,30 @@ export default function Chat() {
   return (
     <div className="h-[100vh] w-full p-4 flex justify-center items-center bg-fixed overflow-hidden">
       <HasOpenAIKey />
+      {/* Fixed right-side preset question button (outside chat window) */}
+      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50">
+        <Button
+          variant="primary"
+          size="md"
+          onClick={async () => {
+            setAgentInput(presetQuestion);
+            await sendMessage(
+              {
+                role: "user",
+                parts: [{ type: "text", text: presetQuestion }]
+              },
+              {
+                body: {}
+              }
+            );
+            setAgentInput("");
+          }}
+          className="shadow-md"
+          aria-label="Ask preset question"
+        >
+          What math courses are offered?
+        </Button>
+      </div>
       <div className="h-[calc(100vh-2rem)] w-full mx-auto max-w-lg flex flex-col shadow-xl rounded-md overflow-hidden relative border border-neutral-300 dark:border-neutral-800">
         <div className="px-4 py-3 border-b border-neutral-300 dark:border-neutral-800 flex items-center gap-3 sticky top-0 z-10">
           <div className="flex items-center justify-center h-8 w-8">

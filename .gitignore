@@ -147,3 +147,6 @@ dist
 !.dev.vars.example
 .env*
 !.env.example
+
+#for supabase url and anon key
+.dev.vars

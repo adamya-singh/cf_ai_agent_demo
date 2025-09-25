@@ -13,12 +13,18 @@ import {
   createUIMessageStreamResponse,
   type ToolSet
 } from "ai";
-import { openai } from "@ai-sdk/openai";
+//import { openai } from "@ai-sdk/openai";
+import { createWorkersAI } from 'workers-ai-provider';
 import { processToolCalls, cleanupMessages } from "./utils";
 import { tools, executions } from "./tools";
-// import { env } from "cloudflare:workers";
+import { env } from "cloudflare:workers";
 
-const model = openai("gpt-4o-2024-11-20");
+const workersai = createWorkersAI({ binding: env.AI });
+//const model = workersai("@cf/deepseek-ai/deepseek-r1-distill-qwen-32b")
+//const model = workersai("@cf/meta/llama-3-8b-instruct")
+const model = workersai("@cf/meta/llama-3.3-70b-instruct-fp8-fast")
+
+//const model = openai("gpt-4o-2024-11-20");
 // Cloudflare AI Gateway
 // const openai = createOpenAI({
 //   apiKey: env.OPENAI_API_KEY,
@@ -114,8 +120,9 @@ export default {
 
     if (url.pathname === "/check-open-ai-key") {
       const hasOpenAIKey = !!process.env.OPENAI_API_KEY;
+      const hasWorkersAI = !!env.AI;
       return Response.json({
-        success: hasOpenAIKey
+        success: hasOpenAIKey || hasWorkersAI
       });
     }
     if (!process.env.OPENAI_API_KEY) {

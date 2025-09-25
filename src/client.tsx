@@ -8,6 +8,10 @@ const root = createRoot(document.getElementById("app")!);
 root.render(
   <Providers>
     <div className="bg-neutral-50 text-base text-neutral-900 antialiased transition-colors selection:bg-blue-700 selection:text-white dark:bg-neutral-950 dark:text-neutral-100">
+      {/* Fixed right-side preset question button outside chat window */}
+      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50">
+        {/* This placeholder will be replaced at runtime by the Chat component's button if needed */}
+      </div>
       <App />
     </div>
   </Providers>
