@@ -14,9 +14,6 @@ A minimal AI agent built from a starter template and extended to work with a Sup
 - The agent runs in the app runtime and can call the database tool when a user asks data‑related questions.
 - The tool handles prompt → SQL translation, executes safely against Supabase, and provides structured answers back to the agent.
 
-### Setup (brief)
-- **Environment**: Copy `.dev.vars.example` to `.dev.vars` and add your Supabase URL and key(s).
-- **Run**: Install dependencies and start the dev server as you normally would for this template.
 
 ### Notes
 - This project started from a template; the primary additions are the Supabase integration and the free‑text query tool.
